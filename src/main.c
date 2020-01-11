@@ -8,16 +8,15 @@
 #include <netinet/in.h>
 #include <netdb.h> 
 #include <argp.h>
+#include <config.h>
 
 #define BUFLEN 1500	//Max length of buffer (set to common MTU of 1500)
 #define PORT 5353	//The port on which to listen for incoming data
 
-const char *argp_program_version =
-  "mdns-forwarder 0.1";
-const char *argp_program_bug_address =
-  "<mdns-forwarder@hhra.uk>";
+const char *argp_program_version = PACKAGE_STRING;
+const char *argp_program_bug_address = PACKAGE_BUGREPORT;
 static char doc[] =
-  "a simple mdns forwarder with peer-to-peer architecture";
+  "a simple mDNS forwarder with peer-to-peer architecture";
 
 static char args_doc[] = "LOCAL_IP PEER_IP";
 
