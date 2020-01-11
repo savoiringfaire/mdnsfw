@@ -1,8 +1,8 @@
-#include<stdio.h>	//printf
-#include<string.h> //memset
-#include<stdlib.h> //exit(0);
-#include<arpa/inet.h>
-#include<sys/socket.h>
+#include <stdio.h>	//printf
+#include <string.h> //memset
+#include <stdlib.h> //exit(0);
+#include <arpa/inet.h>
+#include <sys/socket.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <netinet/in.h>
@@ -16,16 +16,6 @@
 #define PEER_PORT 8723
 
 #define PEER_LISTEN_PORT 8723
-
-struct mdns {
-	uint16_t transactionid;
-	uint8_t flags_1;
-	uint8_t flags_2;
-	uint16_t questions;
-	uint16_t answers;
-	uint16_t authorities;
-	uint16_t additional;
-} __attribute__ ((__packed__));
 
 void die(char *s)
 {
@@ -153,9 +143,6 @@ int main(void)
 		FD_SET(peers, &rfds);
 
 		printf("Waiting for data...\n");
-		printf("Peersock: %d\n", peers);
-		printf("s:        %d\n", s);
-		printf("Larger:   %d\n\n", ((s) >= (peers)) ? (s) : (peers));
 		fflush(stdout);
 
 		select(((s) >= (peers)) ? (s) : (peers) + 1, &rfds, NULL, NULL, 0);
@@ -185,9 +172,6 @@ int main(void)
 			{
 				die("recvfrom()");
 			}
-
-			// 224.0.0.251 - multicast address for mDNS
-
 
 			printf("Got new forwarded packet\n");
 
