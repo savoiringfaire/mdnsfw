@@ -29,6 +29,9 @@ void enablesockopt(int sockfd, int optname)
 
 int main(int argc, char *argv[])
 {
+	// There are plenty of sockets used to get this working:
+	//  - si_mdns_local the socket used for the outgoing mdns packets we are relaying
+	//  - si_mdns_
 	arguments arguments;
 
 	parse_arguments(argc, argv, &arguments);
@@ -118,8 +121,8 @@ int main(int argc, char *argv[])
 		die("gethostbyname");
 	}
 
-    si_forwardserver.sin_family = AF_INET; 
-    si_forwardserver.sin_port = htons(arguments.peer_port); 
+	si_forwardserver.sin_family = AF_INET; 
+	si_forwardserver.sin_port = htons(arguments.peer_port); 
 	bcopy((char *)server->h_addr, 
 	  (char *)&si_forwardserver.sin_addr.s_addr, server->h_length);
 	

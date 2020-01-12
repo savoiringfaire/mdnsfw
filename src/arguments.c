@@ -26,21 +26,21 @@ parse_opt (int key, char *arg, struct argp_state *state)
 	arguments *arguments = state->input;
 
 	switch (key)
-    {
-    case 'q': case 's':
+	{
+	case 'q': case 's':
 		arguments->silent = 1;
 		break;
-    case 'v':
+	case 'v':
 		arguments->verbose = 1;
 		break;
 	case 'l':
 		arguments->local_port = atoi(arg);
 		break;
-    case 'p':
+	case 'p':
 		arguments->peer_port = atoi(arg);
 		break;
 
-    case ARGP_KEY_ARG:
+	case ARGP_KEY_ARG:
 		if (state->arg_num >= 2)
 			/* Too many arguments. */
 			argp_usage (state);
@@ -55,15 +55,15 @@ parse_opt (int key, char *arg, struct argp_state *state)
 
 		break;
 
-    case ARGP_KEY_END:
+	case ARGP_KEY_END:
 		if (state->arg_num < 2)
 			/* Not enough arguments. */
 			argp_usage (state);
 		break;
 
-    default:
-   	   return ARGP_ERR_UNKNOWN;
-    }
+	default:
+		return ARGP_ERR_UNKNOWN;
+	}
 	return 0;
 }
 
@@ -71,7 +71,7 @@ static struct argp argp = { options, parse_opt, args_doc, doc };
 
 void parse_arguments(int argc, char *argv[],  arguments *arguments)
 {
-    arguments->silent = 0;
+	arguments->silent = 0;
   	arguments->verbose = 0;
 	arguments->peer_port = 8723;
 	arguments->local_port = 8723;
